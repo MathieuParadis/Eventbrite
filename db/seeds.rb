@@ -10,7 +10,7 @@ users = []
 events = []
 attendances = []
 
-for i in 0..20 do
+for i in 0..6 do
   u = User.create(email: "mat#{i}@yopmail.com" ,
                   encrypted_password: "mdptest" ,
                   description: "rien a dire ici" ,
@@ -34,7 +34,7 @@ for i in 0..10 do
   events << e
 end
 
-30.times do
+3.times do
   guest = User.find(rand(1..User.count))
   event = Event.find(rand(1..Event.count))
 
