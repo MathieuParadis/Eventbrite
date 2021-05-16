@@ -21,22 +21,25 @@ for i in 0..20 do
 end
 
 for i in 0..10 do
+  admin = User.find(rand(1..User.count))
+
   e = Event.create(start_date: Faker::Date.forward(days: 60),
                    duration: 180,
                    title: "Title#{i}",
                    description: "Ceci est un evenement avec une description pas tres originale",
                    price: rand(1..1000),
-                   location:Faker::Address.city)
+                   location:Faker::Address.city,
+                   admin: admin)
 
   events << e
 end
 
 30.times do
-  user = User.find(rand(1..User.count))
+  guest = User.find(rand(1..User.count))
   event = Event.find(rand(1..Event.count))
 
   a = Attendance.create(stripe_customer_id: Faker::Barcode.ean(13),
-                        user: user,
+                        guest: guest,
                         event: event)
                         
   attendances << a
