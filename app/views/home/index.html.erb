@@ -54,13 +54,6 @@
 
         <div class = "mt-5 mx-3">
 
-            <% flash.each do |msg| %>
-            <div class="alert alert-success">
-                <%= msg.join(": ").html_safe %>
-                
-            </div>
-            <% end %>
-
         <!-- Reste de la page -->
             <div class="container-fluid">
                 <div class="row">
@@ -96,40 +89,6 @@
                         <span class="sr-only">Suivant</span>
                     </a>
                 </div>
-
-                <ul class="d-flex list-unstyled">
-                    <li><%= link_to "Créer un potin", new_gossip_path, class: "btn btn-secondary btn-lg text-light mt-3 mr-3" %></li>
-                    <li><%= link_to "Consulter les potins", gossips_path, class: "btn btn-secondary btn-lg text-light mt-3" %></li>
-                </ul>
-                
-                <div class="row">
-
-                <% @gossips.map do |gossip| %>
-                    <div class="col-12 col-sm-4 my-3 flip-card border-success">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front bg-light d-flex flex-column">
-                                <div class="card-header text-center pb-1 text-white bg-info">
-                                    <h5>Gossip nº <%=gossip.id%></h5>
-                                </div>
-                                <div class="my-auto">
-                                    <h2 class="card-title text-warning py-2">By <%=gossip.user.first_name%></h2>
-                                    <h4 class="card-text text-info"><%=gossip.title%></h4>
-                                    <h4 class="text-info">Nombre de coms - <%= Comment.where(gossip: gossip).count%></h4>
-                                    <h4 class="text-info">Nombre de likes - <%= Like.where(gossip: gossip).count%></h4>
-                                </div>
-                            </div>
-
-                            <div class="flip-card-back d-flex flex-column bg-white">
-                                <div class="card-header text-center pb-1 text-wh bg-info">
-                                    <h5>Gossip nº <%=gossip.id%></h5>
-                                </div>
-                                <div class="my-auto">
-                                    <p><%= link_to "Voir plus", gossip_path(gossip.id), class: "btn btn-success btn-lg"%></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <% end %>
             </div>
         </div>
 
